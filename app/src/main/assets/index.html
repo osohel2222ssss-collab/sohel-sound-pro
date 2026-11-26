@@ -79,7 +79,28 @@ input[type=file]{display:none}
   <button class="upload" onclick="document.getElementById('audioInput').click()">＋ ADD YOUR MUSIC</button>
   <footer>SOHEL SOUND PRO</footer>
 </div>
-<div id="settingsModal2" onclick="if(event.target===this)closeSettings()" style="display:none;position:fixed;inset:0;background:#000a;z-index:99;align-items:center;justify-content:center;padding:20px"><div style="background:#1b1030;border:1px solid #8d4bdb;border-radius:22px;padding:22px;width:100%;max-width:360px;color:#fff;text-align:center"><h3 style="margin:0 0 14px">Settings</h3><button onclick="clearAll()" style="width:100%;padding:13px;border:0;border-radius:14px;background:#ff2b6b;color:#fff;font-weight:700;margin-bottom:10px">Clear all sounds</button><button onclick="closeSettings()" style="width:100%;padding:13px;border:1px solid #55317b;border-radius:14px;background:none;color:#fff">Close</button></div></div>
+ <div id="settingsModal2" onclick="if(event.target===this)closeSettings()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center">
+<div style="background:#1a1033;border:1px solid #3a2a6a;border-radius:18px;padding:18px;width:85%;max-width:340px;color:#fff;font-family:sans-serif">
+<h3 style="text-align:center;margin:0 0 14px">Settings</h3>
+
+<label style="font-size:13px">Volume: <span id="volVal">100</span>%</label>
+<input id="volRange" type="range" min="0" max="100" value="100" style="width:100%;margin:6px 0 14px" oninput="setVol(this.value)">
+
+<label style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:14px">Repeat / Loop <input id="loopChk" type="checkbox" onchange="setLoop(this.checked)"></label>
+
+<div style="font-size:13px;margin-bottom:6px">Theme color</div>
+<div style="display:flex;gap:10px;margin-bottom:14px">
+<span onclick="setTheme('#ff2d78')" style="width:32px;height:32px;border-radius:50%;background:#ff2d78"></span>
+<span onclick="setTheme('#7c4dff')" style="width:32px;height:32px;border-radius:50%;background:#7c4dff"></span>
+<span onclick="setTheme('#00c2ff')" style="width:32px;height:32px;border-radius:50%;background:#00c2ff"></span>
+<span onclick="setTheme('#22c55e')" style="width:32px;height:32px;border-radius:50%;background:#22c55e"></span>
+</div>
+
+<div style="font-size:12px;opacity:.7;margin-bottom:14px">About: Sound Library v1.0</div>
+
+<button onclick="clearAllSounds()" style="width:100%;padding:10px;border:0;border-radius:10px;background:var(--accent,#ff2d78);color:#fff;font-weight:600;margin-bottom:8px">Clear all sounds</button>
+<button onclick="closeSettings()" style="width:100%;padding:10px;border-radius:10px;background:none;border:1px solid #3a2a6a;color:#fff">Close</button>
+</div></div>
 <script>
 let tracks=[],current=-1,audio=new Audio();
 const $=id=>document.getElementById(id);
