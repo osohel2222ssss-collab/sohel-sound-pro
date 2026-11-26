@@ -70,6 +70,7 @@ input[type=file]{display:none}
   <button class="upload" onclick="document.getElementById('audioInput').click()">＋ ADD YOUR MUSIC</button>
   <footer>SOHEL SOUND PRO • UI DEMO</footer>
 </div>
+
 <script>
 let tracks=[],current=-1,audio=new Audio();
 const $=id=>document.getElementById(id);
@@ -84,8 +85,22 @@ function togglePlay(){if(current<0){if(tracks.length)play(0);return}if(audio.pau
 function stopAudio(){audio.pause();audio.currentTime=0;$('playBtn').textContent='▶';$('trackStatus').textContent='Stopped'}
 function nextAudio(){if(tracks.length)play((current+1)%tracks.length)}
 function showCategory(name){$('trackStatus').textContent=name+' category selected';$('trackName').textContent=name}
-$('audioInput').addEventListener('change',e=>{[...e.target.files].forEach(f=>tracks.push({name:f.name,url:URL.createObjectURL(f)}));render();if(current<0&&tracks.length) $('trackStatus').textContent='Music added — select Play';e.target.value=''});
+function loadSaved(){
+ try{
+  if(window.Android){
+   tracks=JSON.parse(Android.getSavedSongs()).map(s=>({name:s.name,url:s.src}));
+   return true
+  }
+ }catch(e){}
+ return false
+}
+$('audioInput').addEventListener('change',e=>{
+ if(!loadSaved()){[...e.target.files].forEach(f=>tracks.push({name:f.name,url:URL.createObjectURL(f)}))}
+ render();
+ if(current<0&&tracks.length)$('trackStatus').textContent='Music added — select Play';
+ e.target.value=''
+});
 audio.addEventListener('ended',()=>{if(tracks.length)nextAudio()});
-render();
+loadSaved();render();
 </script>
 </body></html>
