@@ -78,8 +78,8 @@ input[type=file]{display:none}
   <input id="audioInput" type="file" accept="audio/*" multiple>
   <button class="upload" onclick="document.getElementById('audioInput').click()">＋ ADD YOUR MUSIC</button>
   <footer>SOHEL SOUND PRO • UI DEMO</footer>
-</div><div class="modal" id="settingsModal"...>
-
+...>
+<div id="settingsModal2" onclick="if(event.target===this)closeSettings()" style="display:none;position:fixed;inset:0;background:#000a;z-index:99;align-items:center;justify-content:center;padding:20px"><div style="background:#1b1030;border:1px solid #8d4bdb;border-radius:22px;padding:22px;width:100%;max-width:360px;color:#fff;text-align:center"><h3 style="margin:0 0 14px">Settings</h3><button onclick="clearAll()" style="width:100%;padding:13px;border:0;border-radius:14px;background:#ff2b6b;color:#fff;font-weight:700;margin-bottom:10px">Clear all sounds</button><button onclick="closeSettings()" style="width:100%;padding:13px;border:1px solid #55317b;border-radius:14px;background:none;color:#fff">Close</buttoncloseSetting
 <script>
 let tracks=[],current=-1,audio=new Audio();
 const $=id=>document.getElementById(id);
@@ -110,8 +110,8 @@ $('audioInput').addEventListener('change',e=>{
  e.target.value=''
 });
 audio.addEventListener('ended',()=>{if(tracks.length)nextAudio()});
-  function openSettings(){$('settingsModal').classList.add('open')}
-function closeSettings(){$('settingsModal').classList.remove('open')}
+  
+function openSettings(){$('settingsModal2').style.display='flex'}function closeSettings(){$('settingsModal2').style.display='none'}              
 function clearAll(){tracks=[];current=-1;audio.pause();audio.src='';$('playBtn').textContent='▶';$('trackName').textContent='No audio selected';render();closeSettings()}
 loadSaved();render();
 </script>
