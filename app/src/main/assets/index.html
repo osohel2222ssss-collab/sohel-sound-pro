@@ -108,7 +108,7 @@ const $=id=>document.getElementById(id);
 function A(){return audio;}
 function setVol(v){$('volVal').textContent=v;audio.volume=v/100;try{localStorage.setItem('vol',v)}catch(e){}}
 function setLoop(on){audio.loop=on;try{localStorage.setItem('loop',on?1:0)}catch(e){}}
-function setTheme(c){document.documentElement.style.setProperty('--accent',c);try{localStorage.setItem('accent',c)}catch(e){}}
+function setTheme(c){var s=document.documentElement.style;s.setProperty('--accent',c);s.setProperty('--pink',c);s.setProperty('--purple',c);try{localStorage.setItem('accent',c)}catch(e){}}
 function openSettings(){$('settingsModal2').style.display='flex'}
 function closeSettings(){$('settingsModal2').style.display='none'}
 (function(){
