@@ -146,8 +146,7 @@ $('audioInput').addEventListener('change',e=>{
 });
 audio.addEventListener('ended',()=>{if(tracks.length)nextAudio()});
   
-function openSettings(){$('settingsModal2').style.display='flex'}function closeSettings(){$('settingsModal2').style.display='none'}              
-function clearAll(){tracks=[];current=-1;audio.pause();audio.src='';$('playBtn').textContent='▶';$('trackName').textContent='No audio selected';render();closeSettings()}
+function clearAllSounds(){tracks=[];current=-1;audio.pause();audio.src='';$('playBtn').textContent='▶';$('trackName').textContent='No audio selected';$('trackStatus').textContent='Choose a sound or add your music';render();closeSettings();}
 loadSaved();render();
 </script>
 </body></html>
